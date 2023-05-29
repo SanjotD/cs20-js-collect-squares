@@ -37,10 +37,16 @@ function keyupHandlerGameLib(e) {
 // USEFUL GAME FUNCTIONS
 
 // Determine the distance between (x1, y1) and (x2, y2)
-function dist(x1, y1, x2, y2) {}
+function dist(x1, y1, x2, y2) {
+  return console.log(Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2));
+}
 
 // Determine if point (x, y) is in rect object (x, y, w, h)
-function ptInRect(x, y, rect) {}
+function ptInRect(x, y, rect) {
+  if (mouseX >= x && mouseX <= rect - cnv.width) {
+    console.log(Hello);
+  }
+}
 
 // Determine if point (x, y) is in circle object (x, y, r)
 function ptInCircle(x, y, circle) {}
