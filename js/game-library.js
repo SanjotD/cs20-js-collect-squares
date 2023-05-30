@@ -42,15 +42,13 @@ function dist(x1, y1, x2, y2) {
 }
 
 // Determine if point (x, y) is in rect object (x, y, w, h)
+let rects = [{ x: 100, y: 200, w: 150, h: 100 }];
+ptInRect(mouseX, mouseY, rects);
+
 function ptInRect(x, y, rect) {
-  if (
-    mouseX >= x &&
-    mouseX <= cnv.width - rect &&
-    mouseY >= y &&
-    mouseY <= cnv.height - rect
-  ) {
-    console.log(Hello);
-  }
+  return (
+    x >= rect.x && x <= rect.x + rect.w && y >= rect.y && y <= rect.y + rect.h
+  );
 }
 
 // Determine if point (x, y) is in circle object (x, y, r)

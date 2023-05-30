@@ -53,6 +53,14 @@ function gameScreen() {
   // Draw Player
   ctx.fillStyle = player.color;
   ctx.fillRect(player.x, player.y, player.w, player.h);
+
+  // Objects
+  requestAnimationFrame(loop);
+  function loop() {
+    for (let i = 0; i >= rects.length; i++) {
+      rects[0].x += 20;
+    }
+  }
 }
 
 // GAME OVER SCREEN
