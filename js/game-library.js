@@ -43,7 +43,12 @@ function dist(x1, y1, x2, y2) {
 
 // Determine if point (x, y) is in rect object (x, y, w, h)
 function ptInRect(x, y, rect) {
-  if (mouseX >= x && mouseX <= rect - cnv.width) {
+  if (
+    mouseX >= x &&
+    mouseX <= cnv.width - rect &&
+    mouseY >= y &&
+    mouseY <= cnv.height - rect
+  ) {
     console.log(Hello);
   }
 }
