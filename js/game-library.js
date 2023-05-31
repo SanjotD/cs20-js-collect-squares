@@ -38,7 +38,7 @@ function keyupHandlerGameLib(e) {
 
 // Determine the distance between (x1, y1) and (x2, y2)
 function dist(x1, y1, x2, y2) {
-  return console.log(Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2));
+  return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
 }
 
 // Determine if point (x, y) is in rect object (x, y, w, h)
@@ -52,10 +52,19 @@ function ptInRect(x, y, rect) {
 }
 
 // Determine if point (x, y) is in circle object (x, y, r)
-function ptInCircle(x, y, circle) {}
+function ptInCirc(x, y, circle) {
+  return dist(x, y, circle.x, circle.y) < circle.r;
+}
 
 // Determine if two rect objects (x, y, w, h) collide
-function rectCollide(rect1, rect2) {}
+function rectCollide(rect1, rect2) {
+  return (
+    rect1.x < rect2.x + rect2.w &&
+    rect1.x + rect1.w > rect2.x &&
+    rect1.y < rect2.y + rect2.h &&
+    rect1.h + rect1.y > rect2.y
+  );
+}
 
 // Determine if two circle objects (x, y, r) collide
 function circleCollide(circle1, circle2) {}
