@@ -13,6 +13,7 @@ function startScreen() {
 // GAME LOGIC
 function gameLogic() {
   movePlayer();
+  moveRects();
   checkGameOver();
 }
 
@@ -28,6 +29,29 @@ function movePlayer() {
     player.y += -player.speed;
   } else if (keyPressed["ArrowDown"]) {
     player.y += player.speed;
+  }
+}
+
+function moveRects() {
+  for (let i = 0; i < rects.length; i++) {
+    rects[i].x += rects[i].dx;
+    if (rects[i].x + rects[i].w > cnv.width) {
+      rects[i].x = cnv.width - rects[i].w;
+      rects[i].dx = -rects[i].dx;
+    } else if (rects[i].x < 0) {
+      rects[i].x = 0;
+      rects[i].dx = -rects[i].dx;
+    }
+  }
+  for (let i = 0; i < rects.length; i++) {
+    rects[i].y += rects[i].dy;
+    if (rects[i].y + rects[i].h > cnv.height) {
+      rects[i].y = cnv.height - rects[i].h;
+      rects[i].dy = -rects[i].dy;
+    } else if (rects[i].y < 0) {
+      rects[i].y = 0;
+      rects[i].dy = -rects[i].dy;
+    }
   }
 }
 
@@ -54,12 +78,10 @@ function gameScreen() {
   ctx.fillStyle = player.color;
   ctx.fillRect(player.x, player.y, player.w, player.h);
 
-  // Objects
-  requestAnimationFrame(loop);
-  function loop() {
-    for (let i = 0; i >= rects.length; i++) {
-      rects[0].x += 20;
-    }
+  // Draw Rectangles
+  for (let i = 0; i < rects.length; i++) {
+    ctx.fillStyle = rects[i].color;
+    ctx.fillRect(rects[i].x, rects[i].y, rects[i].w, rects[i].h);
   }
 }
 

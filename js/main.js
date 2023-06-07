@@ -16,6 +16,22 @@ let player = {
   color: "blue",
   speed: 5,
 };
+// Objects
+let rects = [];
+for (let n = 1; n <= 10; n++) {
+  rects.push({
+    x: Math.random() * cnv.width,
+    y: Math.random() * cnv.height,
+    w: 25,
+    h: 25,
+    dx: 5,
+    dy: 5,
+    color: "red",
+  });
+  if (rectCollide(player, rects[n])) {
+    console.log("collide");
+  }
+}
 
 // START DRAW FUNCTION ON PAGE LOAD
 window.addEventListener("load", draw);

@@ -42,9 +42,6 @@ function dist(x1, y1, x2, y2) {
 }
 
 // Determine if point (x, y) is in rect object (x, y, w, h)
-let rects = [{ x: 100, y: 200, w: 150, h: 100 }];
-ptInRect(mouseX, mouseY, rects);
-
 function ptInRect(x, y, rect) {
   return (
     x >= rect.x && x <= rect.x + rect.w && y >= rect.y && y <= rect.y + rect.h
@@ -67,7 +64,11 @@ function rectCollide(rect1, rect2) {
 }
 
 // Determine if two circle objects (x, y, r) collide
-function circleCollide(circle1, circle2) {}
+function circleCollide(circle1, circle2) {
+  return (
+    dist(circle1.x, circle1.y, circle2.x, circle2.y) < circle1.r + circle2.r
+  );
+}
 
-// Constrain val so that it must be between low and high
+// Constrain value so that it must be between low and high
 function constrain(val, low, high) {}
