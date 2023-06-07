@@ -28,9 +28,6 @@ for (let n = 1; n <= 10; n++) {
     dy: 5,
     color: "red",
   });
-  if (rectCollide(player, rects[n])) {
-    console.log("collide");
-  }
 }
 
 // START DRAW FUNCTION ON PAGE LOAD

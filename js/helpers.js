@@ -82,6 +82,9 @@ function gameScreen() {
   for (let i = 0; i < rects.length; i++) {
     ctx.fillStyle = rects[i].color;
     ctx.fillRect(rects[i].x, rects[i].y, rects[i].w, rects[i].h);
+    if (rectCollide(player, rects[i])) {
+      console.log("collidesd");
+    }
   }
 }
 
