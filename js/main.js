@@ -17,9 +17,10 @@ let player = {
   speed: 5,
 };
 // Objects
-let rects = [];
-for (let n = 1; n <= 10; n++) {
-  rects.push({
+//Obstacle Rects
+let evilRects = [];
+for (let n = 1; n <= 5; n++) {
+  evilRects.push({
     x: Math.random() * cnv.width,
     y: Math.random() * cnv.height,
     w: 25,
@@ -27,6 +28,20 @@ for (let n = 1; n <= 10; n++) {
     dx: 5,
     dy: 5,
     color: "red",
+  });
+}
+
+//Collect Rects
+let goodRects = [];
+for (let n = 1; n <= 12; n++) {
+  goodRects.push({
+    x: Math.random() * cnv.width,
+    y: Math.random() * cnv.height,
+    w: 25,
+    h: 25,
+    dx: 5,
+    dy: 5,
+    color: "white",
   });
 }
 

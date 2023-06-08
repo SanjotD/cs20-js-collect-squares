@@ -33,24 +33,24 @@ function movePlayer() {
 }
 
 function moveRects() {
-  for (let i = 0; i < rects.length; i++) {
-    rects[i].x += rects[i].dx;
-    if (rects[i].x + rects[i].w > cnv.width) {
-      rects[i].x = cnv.width - rects[i].w;
-      rects[i].dx = -rects[i].dx;
-    } else if (rects[i].x < 0) {
-      rects[i].x = 0;
-      rects[i].dx = -rects[i].dx;
+  for (let i = 0; i < evilRects.length; i++) {
+    evilRects[i].x += evilRects[i].dx;
+    if (evilRects[i].x + evilRects[i].w > cnv.width) {
+      evilRects[i].x = cnv.width - evilRects[i].w;
+      evilRects[i].dx = -evilRects[i].dx;
+    } else if (evilRects[i].x < 0) {
+      evilRects[i].x = 0;
+      evilRects[i].dx = -evilRects[i].dx;
     }
   }
-  for (let i = 0; i < rects.length; i++) {
-    rects[i].y += rects[i].dy;
-    if (rects[i].y + rects[i].h > cnv.height) {
-      rects[i].y = cnv.height - rects[i].h;
-      rects[i].dy = -rects[i].dy;
-    } else if (rects[i].y < 0) {
-      rects[i].y = 0;
-      rects[i].dy = -rects[i].dy;
+  for (let i = 0; i < evilRects.length; i++) {
+    evilRects[i].y += evilRects[i].dy;
+    if (evilRects[i].y + evilRects[i].h > cnv.height) {
+      evilRects[i].y = cnv.height - evilRects[i].h;
+      evilRects[i].dy = -evilRects[i].dy;
+    } else if (evilRects[i].y < 0) {
+      evilRects[i].y = 0;
+      evilRects[i].dy = -evilRects[i].dy;
     }
   }
 }
@@ -79,11 +79,32 @@ function gameScreen() {
   ctx.fillRect(player.x, player.y, player.w, player.h);
 
   // Draw Rectangles
-  for (let i = 0; i < rects.length; i++) {
-    ctx.fillStyle = rects[i].color;
-    ctx.fillRect(rects[i].x, rects[i].y, rects[i].w, rects[i].h);
-    if (rectCollide(player, rects[i])) {
-      console.log("collidesd");
+  let count = 0;
+  //Obstacle Rects
+  for (let i = 0; i < evilRects.length; i++) {
+    ctx.fillStyle = evilRects[i].color;
+    ctx.fillRect(
+      evilRects[i].x,
+      evilRects[i].y,
+      evilRects[i].w,
+      evilRects[i].h
+    );
+    if (rectCollide(player, evilRects[i])) {
+      state = "gameover";
+    }
+  }
+  //Collect Rects
+  for (let i = 0; i < goodRects.length; i++) {
+    ctx.fillStyle = goodRects[i].color;
+    ctx.fillRect(
+      goodRects[i].x,
+      goodRects[i].y,
+      goodRects[i].w,
+      goodRects[i].h
+    );
+    if (rectCollide(player, goodRects[i])) {
+      goodRects.splice(i, 1);
+      count++;
     }
   }
 }
@@ -114,4 +135,31 @@ function reset() {
     color: "blue",
     speed: 5,
   };
+
+  evilRects = [];
+  for (let n = 1; n <= 5; n++) {
+    evilRects.push({
+      x: Math.random() * cnv.width,
+      y: Math.random() * cnv.height,
+      w: 25,
+      h: 25,
+      dx: 5,
+      dy: 5,
+      color: "red",
+    });
+  }
+  if (goodRects.length <= 12) {
+    goodRects = [];
+    for (let n = 1; n <= 12; n++) {
+      goodRects.push({
+        x: Math.random() * cnv.width,
+        y: Math.random() * cnv.height,
+        w: 25,
+        h: 25,
+        dx: 5,
+        dy: 5,
+        color: "white",
+      });
+    }
+  }
 }
