@@ -16,6 +16,18 @@ let player = {
   color: "blue",
   speed: 5,
 };
+let seconds = 0;
+let count = 0;
+let timerOutput = document.getElementById("timer");
+let totalCollected = document.getElementById("sqr-count");
+
+//Timer
+function secondsTimer() {
+  seconds += 1;
+  timerOutput.innerHTML = seconds;
+}
+var cancel = setInterval(secondsTimer, 1000);
+
 // Objects
 //Obstacle Rects
 let evilRects = [];

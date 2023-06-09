@@ -66,6 +66,10 @@ function checkGameOver() {
   ) {
     state = "gameover";
   }
+  // Game over if player colects all squares
+  if (goodRects.length === 0) {
+    state = "gameover";
+  }
 }
 
 // DRAW GAME SCREEN
@@ -79,7 +83,7 @@ function gameScreen() {
   ctx.fillRect(player.x, player.y, player.w, player.h);
 
   // Draw Rectangles
-  let count = 0;
+
   //Obstacle Rects
   for (let i = 0; i < evilRects.length; i++) {
     ctx.fillStyle = evilRects[i].color;
@@ -105,6 +109,7 @@ function gameScreen() {
     if (rectCollide(player, goodRects[i])) {
       goodRects.splice(i, 1);
       count++;
+      totalCollected.innerHTML = count;
     }
   }
 }
@@ -135,6 +140,11 @@ function reset() {
     color: "blue",
     speed: 5,
   };
+
+  count = 0;
+  totalCollected.innerHTML = count;
+
+  seconds = 0;
 
   evilRects = [];
   for (let n = 1; n <= 5; n++) {
