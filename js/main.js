@@ -1,4 +1,4 @@
-// JS GAME SKELETON
+// Collect Squares
 
 // CANVAS SETUP
 let cnv = document.getElementById("my-canvas");
