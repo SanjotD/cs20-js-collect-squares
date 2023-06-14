@@ -8,6 +8,7 @@ function startScreen() {
   ctx.font = "48px Calibri";
   ctx.fillStyle = "white";
   ctx.fillText("Press SPACE to Begin!", 100, 300);
+  seconds = 0;
 }
 
 // GAME LOGIC
@@ -145,6 +146,7 @@ function reset() {
   totalCollected.innerHTML = count;
 
   seconds = 0;
+  timerOutput.innerHTML = seconds;
 
   evilRects = [];
   for (let n = 1; n <= 5; n++) {

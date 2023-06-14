@@ -23,11 +23,12 @@ let totalCollected = document.getElementById("sqr-count");
 
 //Timer
 function secondsTimer() {
-  seconds += 1;
-  timerOutput.innerHTML = seconds;
+  if (state === "running") {
+    seconds += 1;
+    timerOutput.innerHTML = seconds;
+  }
 }
 var cancel = setInterval(secondsTimer, 1000);
-
 // Objects
 //Obstacle Rects
 let evilRects = [];
