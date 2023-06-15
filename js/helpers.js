@@ -33,6 +33,7 @@ function movePlayer() {
   }
 }
 
+// Move Objects
 function moveRects() {
   for (let i = 0; i < evilRects.length; i++) {
     evilRects[i].x += evilRects[i].dx;
